@@ -1,31 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unicode Text Generator | Sales Team Tool</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Unicode Generator — Sales Tool</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Unicode Text Generator 🔠</h1>
-    <p>Type your message below and get bold Unicode text for Outlook or marketing emails.</p>
-  </header>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <h1>Unicode Generator</h1>
+        <p class="tag">Generate bold / styled Unicode text for email subjects & marketing</p>
+      </div>
+      <div class="actions-mobile">
+        <button id="copyBtnTop" class="btn secondary">Copy</button>
+      </div>
+    </header>
 
-  <main>
-    <textarea id="inputText" placeholder="Type your message here..."></textarea>
-    <button id="convertBtn">Convert to Bold Unicode</button>
+    <main class="container">
+      <section class="panel input-panel">
+        <label for="inputText" class="label">Type your text</label>
+        <textarea id="inputText" placeholder="Type something like: Limited Offer Today! 🔥"></textarea>
 
-    <div id="outputSection">
-      <h2>Converted Text</h2>
-      <p id="outputText"></p>
-      <button id="copyBtn">Copy Text</button>
-    </div>
-  </main>
+        <div class="controls">
+          <div class="left-controls">
+            <label for="styleSelect" class="label small">Style</label>
+            <select id="styleSelect">
+              <option value="bold">Bold Unicode</option>
+              <option value="italic">Italic Unicode</option>
+              <option value="bold-italic">Bold Italic Unicode</option>
+              <option value="monospace">Monospace Unicode</option>
+              <option value="none">None (plain)</option>
+            </select>
+          </div>
 
-  <footer>
-    <p>© 2025 Sales Tools | Built by Rahul Singh Rawat</p>
-  </footer>
+          <div class="right-controls">
+            <button id="convertBtn" class="btn primary">Convert</button>
+            <button id="clearBtn" class="btn ghost">Clear</button>
+            <button id="copyBtn" class="btn secondary">Copy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel output-panel" aria-live="polite">
+        <label class="label">Converted output</label>
+        <div id="outputWrapper">
+          <pre id="outputText" class="output">(Converted text appears here)</pre>
+        </div>
+
+        <div class="footer-note">
+          <p>
+            Tip: copy the result and paste into Outlook/Gmail subject or body. Some older clients may render uncommon symbols as squares — always test before mass send.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bottombar">
+      <p>© 2025 Sales Tools • Built by Rahul Singh Rawat</p>
+    </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
