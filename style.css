@@ -1,73 +1,99 @@
-body {
-  font-family: "Segoe UI", sans-serif;
-  background-color: #f3f4f6;
-  color: #222;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+:root{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --accent:#0078d7;
+  --accent-2:#004c91;
+  --muted:#6b7280;
+  --text:#0f172a;
+  --radius:12px;
+  --gap:16px;
+  --shadow: 0 6px 20px rgba(10, 20, 40, 0.06);
+  --glass: rgba(255,255,255,0.7);
 }
 
-header {
-  background: linear-gradient(135deg, #0078d7, #004c91);
-  color: white;
-  text-align: center;
-  padding: 2rem 1rem;
+*{box-sizing:border-box}
+body,html{height:100%;margin:0;font-family:Inter, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;}
+body{background:linear-gradient(180deg,var(--bg),#eef2f6);color:var(--text);-webkit-font-smoothing:antialiased;}
+
+.app{min-height:100vh;display:flex;flex-direction:column}
+
+/* Topbar */
+.topbar{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:white;padding:18px 20px;border-bottom-left-radius:14px;border-bottom-right-radius:14px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand h1{margin:0;font-size:1.15rem;letter-spacing:0.2px}
+.brand .tag{margin:2px 0 0;font-size:0.85rem;opacity:0.95}
+
+/* Container */
+.container{
+  display:flex;
+  gap:var(--gap);
+  width:100%;
+  max-width:1100px;
+  margin:24px auto;
+  padding:0 16px;
+  align-items:flex-start;
 }
 
-main {
-  flex: 1;
-  max-width: 700px;
-  margin: 2rem auto;
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Panels */
+.panel{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
 }
 
-textarea {
-  width: 100%;
-  height: 100px;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  resize: none;
+.input-panel{flex:1;min-width:280px}
+.output-panel{flex:1;min-width:280px;display:flex;flex-direction:column}
+
+/* Inputs */
+.label{font-weight:600;margin-bottom:8px;display:block}
+.label.small{font-weight:600;margin-right:8px;font-size:0.85rem}
+textarea{
+  width:100%;min-height:120px;padding:12px;border-radius:10px;border:1px solid #e6edf6;font-size:1rem;
+  resize:vertical;outline:none;background:linear-gradient(180deg,#fff,#fbfdff);
+  transition:box-shadow .2s;
+}
+textarea:focus{box-shadow:0 6px 18px rgba(0,120,215,0.12);border-color:rgba(0,120,215,0.25);}
+
+/* Controls */
+.controls{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px;padding-top:6px}
+.left-controls{display:flex;align-items:center;gap:8px}
+select{padding:8px;border-radius:8px;border:1px solid #e5eef9;background:#fff}
+
+/* Buttons */
+.btn{border:0;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff;box-shadow: 0 6px 18px rgba(0,120,215,0.12)}
+.btn.secondary{background:#eef6ff;color:var(--accent);border:1px solid rgba(0,120,215,0.08)}
+.btn.ghost{background:transparent;border:1px solid #e6eef6;color:var(--text)}
+.btn:active{transform:translateY(1px)}
+
+/* Output */
+#outputWrapper{flex:1;margin-top:8px;background:linear-gradient(180deg,#fbfdff,#fff);padding:12px;border-radius:10px;border:1px solid #eef4fb;min-height:120px;display:flex;align-items:center}
+.output{margin:0;font-size:1.15rem;white-space:pre-wrap;word-break:break-word;color:#0b1220}
+
+/* Footer note */
+.footer-note{margin-top:12px;color:var(--muted);font-size:0.9rem}
+
+/* Bottom footer */
+.bottombar{text-align:center;padding:14px;color:var(--muted);margin-top:auto}
+
+/* Responsive */
+@media (max-width: 900px){
+  .container{flex-direction:column;margin:16px auto}
+  .topbar{flex-direction:column;align-items:flex-start;gap:8px}
+  .actions-mobile{display:none}
+  .controls{flex-direction:column;align-items:stretch}
+  .right-controls{display:flex;gap:8px;justify-content:stretch}
+  .right-controls .btn{flex:1}
+  .brand .tag{font-size:0.82rem}
 }
 
-button {
-  display: block;
-  margin: 1rem auto;
-  background-color: #0078d7;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background-color: #005a9e;
-}
-
-#outputSection {
-  text-align: center;
-  margin-top: 1.5rem;
-}
-
-#outputText {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #222;
-  word-wrap: break-word;
-}
-
-footer {
-  text-align: center;
-  background-color: #002b5c;
-  color: white;
-  padding: 1rem;
+/* Small screens */
+@media (max-width: 520px){
+  .brand h1{font-size:1rem}
+  textarea{min-height:100px}
+  .output{font-size:1rem}
 }
